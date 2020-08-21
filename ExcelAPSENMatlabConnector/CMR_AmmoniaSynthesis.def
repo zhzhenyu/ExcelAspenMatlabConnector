@@ -1,0 +1,10 @@
+INPUT: CMR_AmmoniaSynthesis.inm
+MODNAME: apmain
+RUNID: CMR_AmmoniaSynthesis
+NEW_RUNID: CMR_AmmoniaSynthesis
+OLD_RUNID: CMR_AmmoniaSynthesis
+PDF: CMR_AmmoniaSynthesis.appdf
+USERNAME: zhenyuzhang
+XMOD: C:\Program Files (x86)\AspenTech\Aspen Plus V10.0\Engine\xeq\apmain
+SPONLY:
+DBCONN: _3251sht.ads

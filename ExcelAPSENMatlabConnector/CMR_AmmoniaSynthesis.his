@@ -1,0 +1,232 @@
+
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+ + +                                                                         + +
+ + +                      ASPEN PLUS CALCULATION HISTORY                     + +
+ + +                                                                         + +
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
+
+ ASPEN PLUS IS A TRADEMARK OF           HOTLINE:
+ ASPEN TECHNOLOGY, INC.                 U.S.A. 888/996-7100
+ 781/221-6400                           EUROPE (44) 1189-226555
+
+ PLATFORM: WINDOWS                                       AUGUST 20, 2020     
+ VERSION: 36.0   Build 249                               THURSDAY    
+ INSTALLATION:                                           11:12:06 A.M.       
+
+ THIS COPY OF ASPEN PLUS LICENSED TO COLORADO SCHOOL OF MINES        
+
+
+      ASPEN PLUS (R) IS A PROPRIETARY PRODUCT OF ASPEN TECHNOLOGY, INC.
+      (ASPENTECH), AND MAY BE USED ONLY UNDER AGREEMENT WITH ASPENTECH.
+      RESTRICTED RIGHTS LEGEND:  USE, REPRODUCTION, OR DISCLOSURE BY THE
+      U.S. GOVERNMENT IS SUBJECT TO RESTRICTIONS SET FORTH IN 
+      (i) FAR 52.227-14, Alt. III, (ii) FAR 52.227-19, (iii) DFARS 
+      252.227-7013(c)(1)(ii), or (iv) THE ACCOMPANYING LICENSE AGREEMENT,
+      AS APPLICABLE. FOR PURPOSES OF THE FAR, THIS SOFTWARE SHALL BE DEEMED
+      TO BE "UNPUBLISHED" AND LICENSED WITH DISCLOSURE PROHIBITIONS.
+      CONTRACTOR/SUBCONTRACTOR: ASPEN TECHNOLOGY, INC. 20 CROSBY DRIVE,
+      BEDFORD, MA 01730.
+ *** INPUT SUMMARY ***
+
+ >>CURRENT RUN
+
+   ORIGINAL RUN                           AUGUST 20, 2020     
+   11:12:06 A.M.                          THURSDAY    
+   INPUT FILE: _3251sht.inm
+   RUN ID : _3251sht
+          1    ;
+          2    ;Input file created by Aspen Plus Rel. 36.0 at 11:12:05 Thu Aug 20, 2020
+          3    ;Directory Z:\Cost_Model\Thread-Jun2020\ExcelAPSENMatlabConnector_Test4  Runid CMR_AMMONIASYNTHESIS
+          4    ;
+          5
+          6
+          7    DYNAMICS
+          8        DYNAMICS RESULTS=ON
+          9
+         10    IN-UNITS MET VOLUME-FLOW='cum/hr' ENTHALPY-FLO='Gcal/hr'  &
+         11            HEAT-TRANS-C='kcal/hr-sqm-K' PRESSURE=bar TEMPERATURE=C  &
+         12            VOLUME=cum DELTA-T=C HEAD=meter MOLE-DENSITY='kmol/cum'  &
+         13            MASS-DENSITY='kg/cum' MOLE-ENTHALP='kcal/mol'  &
+         14            MASS-ENTHALP='kcal/kg' HEAT=Gcal MOLE-CONC='mol/l'  &
+         15            PDROP=bar SHORT-LENGTH=mm
+         16
+         17    DEF-STREAMS CONVEN ALL
+         18
+         19    SIM-OPTIONS MASS-BAL-CHE=YES FLASH-MAXIT=100 FLASH-TOL=0.0001  &
+         20            MASS-BAL-TOL=0.01 OPER-YEAR=8766. <hr>
+         21
+         22    MODEL-OPTION
+         23
+         24    DESCRIPTION "
+         25        General Simulation with Metric Units :
+         26        C, bar, kg/hr, kmol/hr, Gcal/hr, cum/hr.
+         27
+         28        Property Method: None
+         29
+         30        Flow basis for input: Mole
+         31
+         32        Stream report composition: Mole flow
+         33        "
+         34
+         35    DATABANKS 'APV100 PURE36' / 'APV100 AQUEOUS' / 'APV100 SOLIDS' &
+         36             / 'APV100 INORGANIC' / 'APESV100 AP-EOS' /  &
+         37            'NISTV100 NIST-TRC' / NOASPENPCD
+         38
+         39    PROP-SOURCES 'APV100 PURE36' / 'APV100 AQUEOUS' /  &
+         40            'APV100 SOLIDS' / 'APV100 INORGANIC' / 'APESV100 AP-EOS' &
+         41             / 'NISTV100 NIST-TRC'
+         42
+         43    COMPONENTS
+         44        N2 N2 /
+         45        H2 H2 /
+         46        NH3 H3N
+         47
+         48    SOLVE
+         49        RUN-MODE MODE=SIM
+         50
+         51    FLOWSHEET
+         52        BLOCK MIXER IN=FEED OUT=INLET
+         53        BLOCK CMR IN=INLET SWEEP OUT=RET PERM
+         54        BLOCK SEPARAT IN=RET OUT=RECYCLE PRODUCT
+         55
+         56    PROPERTIES PENG-ROB
+         57        PROPERTIES IDEAL
+         58
+         59    PROP-DATA PRKBV-1
+         60        IN-UNITS MET VOLUME-FLOW='cum/hr' ENTHALPY-FLO='Gcal/hr'  &
+         61            HEAT-TRANS-C='kcal/hr-sqm-K' PRESSURE=bar TEMPERATURE=C  &
+         62            VOLUME=cum DELTA-T=C HEAD=meter MOLE-DENSITY='kmol/cum'  &
+         63            MASS-DENSITY='kg/cum' MOLE-ENTHALP='kcal/mol'  &
+         64            MASS-ENTHALP='kcal/kg' HEAT=Gcal MOLE-CONC='mol/l'  &
+         65            PDROP=bar SHORT-LENGTH=mm
+         66        PROP-LIST PRKBV
+         67        BPVAL N2 H2 .1030000000 0.0 0.0 -273.1500000 726.8500000
+         68        BPVAL H2 N2 .1030000000 0.0 0.0 -273.1500000 726.8500000
+         69        BPVAL N2 NH3 .2193000000 0.0 0.0 -273.1500000 726.8500000
+         70        BPVAL NH3 N2 .2193000000 0.0 0.0 -273.1500000 726.8500000
+         71
+         72    STREAM FEED
+         73        SUBSTREAM MIXED TEMP=450. PRES=30.  &
+         74            MOLE-FLOW=7.45E-005 <kmol/sec> MAXIT=300
+         75        MOLE-FRAC N2 0.25 / H2 0.75
+         76
+         77    STREAM SWEEP
+         78        SUBSTREAM MIXED TEMP=450. PRES=0.05  &
+         79            MOLE-FLOW=7.45E-008 <kmol/sec>
+         80        MOLE-FRAC N2 1.
+         81
+         82    BLOCK MIXER MIXER
+         83        PARAM
+         84
+         85    BLOCK SEPARAT SEP
+         86        PARAM
+         87        FRAC STREAM=RECYCLE SUBSTREAM=MIXED COMPS=N2 H2 FRACS=1.  &
+         88            1.
+         89
+         90    BLOCK CMR USER2
+         91        PARAM NINT=4 NREAL=4  &
+         92            EXCEL-FILE='Z:\Cost_Model\Thread-Jun2020\ExcelAPSENMatlabConnector\ExcelAPSENMatlabConnector.xlsm' &
+         93            NCHAR=4
+         94        INT VALUE-LIST=100 1000 100 100
+         95        REAL VALUE-LIST=0.1 0.005 * *
+         96        CHAR CHAR-LIST="NUMBER OF CMRS / LENGTH OF A CMR (M)"  &
+         97            "AMMONIA PERMEANCE (GPU) / RADIUS OF A CMR (M)"  &
+         98            "N2 SELECTIVITY /" "H2 SELECTIVITY /"
+         99        FLASH-SPECS PERM TP
+        100        FLASH-SPECS RET TP
+        101
+        102    EO-CONV-OPTI
+        103
+        104    STREAM-REPOR MOLEFLOW
+        105    ;
+        106    ;
+        107    ;
+        108    ;
+        109    ;
+ *** INPUT TRANSLATOR MESSAGES ***
+
+  *** THIS RUN USES THE PROPERTIES ENTERPRISE DATABASE ***
+      PVM-ACADSQL.APESV100 : (DATAVERSION - 36.0.0.1)                         
+      PVM-ACADSQL.APV100 : (DATAVERSION - 36.0.0.21)                          
+      PVM-ACADSQL.FACTV100 : (DATAVERSION - 36.0.0.1)                         
+      PVM-ACADSQL.NISTV100 : (DATAVERSION - 36.0.0.15)                        
+ 
+ 
+
+ PDF updated                                                                      TIME =      1.16
+
+ *** CALCULATION TRACE ***
+
+
+ *** FLOWSHEET ANALYSIS MESSAGES ***
+
+ FLOWSHEET CONNECTIVITY BY STREAMS       
+
+   STREAM     SOURCE     DEST           STREAM     SOURCE     DEST
+   FEED       ----       MIXER          SWEEP      ----       CMR     
+   INLET      MIXER      CMR            RET        CMR        SEPARAT 
+   PERM       CMR        ----           RECYCLE    SEPARAT    ----    
+   PRODUCT    SEPARAT    ----                                         
+
+ FLOWSHEET CONNECTIVITY BY BLOCKS        
+
+   BLOCK        INLETS                         OUTLETS
+   MIXER        FEED                           INLET                       
+   CMR          INLET SWEEP                    RET PERM                    
+   SEPARAT      RET                            RECYCLE PRODUCT             
+
+      COMPUTATION ORDER FOR THE FLOWSHEET IS:
+      MIXER CMR SEPARAT 
+
+Calculations begin                                                              time      0.11
+
+
+ SIMULATION CALCULATIONS BEGIN                                                    TIME =      0.11
+
+      ENTHALPY CALCULATION FOR INLET STREAM FEED OF BLOCK MIXER                   TIME =      0.11
+      KODE = 2  NTRIAL =   0  T = 723.1500  P = 3.000000E+06  V =  1.00000      Q =  0.00000    
+
+      UOS BLOCK MIXER    MODEL: MIXER                                             TIME =      0.11
+      NO. TEMP ITER =    5     TEMP =  723.150    
+      KODE = 1  NTRIAL =   0  T = 723.1499  P = 3.000000E+06  V =  1.00000      Q =  0.00000    
+
+      ENTHALPY CALCULATION FOR INLET STREAM SWEEP OF BLOCK CMR                    TIME =      0.11
+      KODE = 2  NTRIAL =   0  T = 723.1500  P =  5000.00      V =  1.00000      Q =  0.00000    
+
+      UOS BLOCK CMR      MODEL: USER2                                             TIME =      0.11
+      KODE = 2  NTRIAL =   0  T = 723.1499  P = 3.000000E+06  V =  1.00000      Q = -90.7880    
+      KODE = 2  NTRIAL =   0  T = 723.1500  P =  5000.00      V =  1.00000      Q = -364.123    
+
+      UOS BLOCK SEPARAT  MODEL: SEP                                               TIME =     30.83
+      ---FLASH OUTLET STREAM RECYCLE :
+      KODE = 2  NTRIAL =   0  T = 723.1499  P = 3.000000E+06  V =  1.00000      Q =  0.00000    
+      ---FLASH OUTLET STREAM PRODUCT :
+      KODE = 2  NTRIAL =   0  T = 723.1499  P = 3.000000E+06  V =  1.00000      Q =  0.00000    
+      STREAM PERM WILL BE FLASHED FOR PROPERTY CALCULATIONS.
+      KODE = 2  NTRIAL =   0  T = 723.1500  P =  5000.00      V =  1.00000      Q = 5.249256E-14
+      STREAM RET WILL BE FLASHED FOR PROPERTY CALCULATIONS.
+      KODE = 2  NTRIAL =   0  T = 723.1499  P = 3.000000E+06  V =  1.00000      Q =  0.00000    
+
+ Report Writer entered                                                            Time =     57.51
+      STREAM PERM WILL BE FLASHED FOR PROPERTY CALCULATIONS.
+      KODE = 2  NTRIAL =   0  T = 723.1500  P =  5000.00      V =  1.00000      Q = 5.249256E-14
+      STREAM RET WILL BE FLASHED FOR PROPERTY CALCULATIONS.
+      KODE = 2  NTRIAL =   0  T = 723.1499  P = 3.000000E+06  V =  1.00000      Q =  0.00000    
+
+ Results generated                                                                Time =     57.52
+
+ Report Writer entered                                                            Time =     57.85
+      STREAM PERM WILL BE FLASHED FOR PROPERTY CALCULATIONS.
+      KODE = 2  NTRIAL =   0  T = 723.1500  P =  5000.00      V =  1.00000      Q = 5.249256E-14
+      STREAM RET WILL BE FLASHED FOR PROPERTY CALCULATIONS.
+      KODE = 2  NTRIAL =   0  T = 723.1499  P = 3.000000E+06  V =  1.00000      Q =  0.00000    
+
+ Results generated                                                                Time =     57.87
+
+RUN SAVED
+
+
+
+ NO ERRORS OR WARNINGS GENERATED
